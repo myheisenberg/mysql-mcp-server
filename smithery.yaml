@@ -7,7 +7,6 @@ startCommand:
     required:
       - DB_HOST
       - DB_USER
-      - DB_PASSWORD
     properties:
       DB_HOST:
         type: string
@@ -27,13 +26,14 @@ startCommand:
           - mysql_user
       DB_PASSWORD:
         type: string
-        title: Database Password
-        description: MySQL password for authentication
+        title: Database Password (Optional)
+        description: MySQL password for authentication (leave empty if no password)
         format: password
+        default: ""
       DB_PORT:
         type: string
-        title: Database Port
-        description: MySQL server port number
+        title: Database Port (Optional)
+        description: MySQL server port number (defaults to 3306)
         default: "3306"
         pattern: "^[0-9]+$"
         examples:
@@ -46,7 +46,7 @@ startCommand:
       env: {
         DB_HOST: config.DB_HOST,
         DB_USER: config.DB_USER,
-        DB_PASSWORD: config.DB_PASSWORD,
+        DB_PASSWORD: config.DB_PASSWORD || '',
         DB_PORT: config.DB_PORT || '3306',
         SKIP_DB_TEST: 'true'
       }
