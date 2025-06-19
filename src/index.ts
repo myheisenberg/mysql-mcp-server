@@ -247,14 +247,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 // Server'ı başlat
 async function main() {
-  // Test database connection
-  try {
-    const connection = await pool.getConnection();
-    console.error("✅ MySQL connection successful");
-    connection.release();
-  } catch (error) {
-    console.error("❌ MySQL connection failed:", error);
-    process.exit(1);
+  // Test database connection (optional for deployment environments)
+  const skipDbTest = process.env.SKIP_DB_TEST === 'true';
+  
+  if (!skipDbTest) {
+    try {
+      const connection = await pool.getConnection();
+      console.error("✅ MySQL connection successful");
+      connection.release();
+    } catch (error) {
+      console.error("❌ MySQL connection failed:", error);
+      console.error("ℹ️ Set SKIP_DB_TEST=true to skip connection test");
+      process.exit(1);
+    }
+  } else {
+    console.error("⚠️ Skipping database connection test (deployment mode)");
   }
 
   // Start MCP server

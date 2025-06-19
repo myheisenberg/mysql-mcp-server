@@ -1,0 +1,35 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - DB_HOST
+      - DB_USER
+      - DB_PASSWORD
+    properties:
+      DB_HOST:
+        type: string
+        description: MySQL host address
+        default: localhost
+      DB_USER:
+        type: string
+        description: MySQL username
+      DB_PASSWORD:
+        type: string
+        description: MySQL password
+      DB_PORT:
+        type: string
+        description: MySQL port number
+        default: "3306"
+  commandFunction: |
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.js'],
+      env: {
+        DB_HOST: config.DB_HOST,
+        DB_USER: config.DB_USER,
+        DB_PASSWORD: config.DB_PASSWORD,
+        DB_PORT: config.DB_PORT,
+        SKIP_DB_TEST: 'true'
+      }
+    }) 
