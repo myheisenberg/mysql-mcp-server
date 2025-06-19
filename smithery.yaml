@@ -2,6 +2,8 @@ startCommand:
   type: stdio
   configSchema:
     type: object
+    title: MySQL Database Configuration
+    description: Configure your MySQL database connection settings
     required:
       - DB_HOST
       - DB_USER
@@ -9,18 +11,34 @@ startCommand:
     properties:
       DB_HOST:
         type: string
-        description: MySQL host address
+        title: Database Host
+        description: MySQL server hostname or IP address
         default: localhost
+        examples:
+          - localhost
+          - 127.0.0.1
+          - mysql.example.com
       DB_USER:
         type: string
-        description: MySQL username
+        title: Database Username
+        description: MySQL username for authentication
+        examples:
+          - root
+          - mysql_user
       DB_PASSWORD:
         type: string
-        description: MySQL password
+        title: Database Password
+        description: MySQL password for authentication
+        format: password
       DB_PORT:
         type: string
-        description: MySQL port number
+        title: Database Port
+        description: MySQL server port number
         default: "3306"
+        pattern: "^[0-9]+$"
+        examples:
+          - "3306"
+          - "3307"
   commandFunction: |
     (config) => ({
       command: 'node',
@@ -29,7 +47,7 @@ startCommand:
         DB_HOST: config.DB_HOST,
         DB_USER: config.DB_USER,
         DB_PASSWORD: config.DB_PASSWORD,
-        DB_PORT: config.DB_PORT,
+        DB_PORT: config.DB_PORT || '3306',
         SKIP_DB_TEST: 'true'
       }
     }) 
