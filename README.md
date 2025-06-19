@@ -17,7 +17,7 @@ A Model Context Protocol (MCP) server for MySQL database operations. Provides 4 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mysql-mcp-server.git
+git clone https://github.com/myheisenberg/mysql-mcp-server.git
 cd mysql-mcp-server
 
 # Install dependencies
@@ -161,10 +161,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you encounter any issues or have questions:
 
-1. Check the [Issues](https://github.com/yourusername/mysql-mcp-server/issues) page
+1. Check the [Issues](https://github.com/myheisenberg/mysql-mcp-server/issues) page
 2. Create a new issue if your problem isn't already reported
 3. Provide as much detail as possible including error messages and configuration
 
 ---
 
-**Made with ❤️ for the MCP community** 
+**Made with ❤️ for the MCP community**
