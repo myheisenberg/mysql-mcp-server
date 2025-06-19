@@ -10,7 +10,7 @@ import mysql from "mysql2/promise";
 
 // MySQL bağlantı konfigürasyonu
 const DB_CONFIG = {
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST || "127.0.0.1", // localhost yerine 127.0.0.1 default
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   port: parseInt(process.env.DB_PORT || "3306"),
